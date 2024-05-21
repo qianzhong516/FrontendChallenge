@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetEmployeeById } from "@/domain/hooks/useGetEmployeeList.hook";
+import { useGetEmployeeById } from "@/domain/hooks/useGetEmployeeById.hook";
 import EmployeeCard from "@/ui/components/EmployeeCard.component";
 import Link from "next/link";
 import { useParams } from "next/navigation";
