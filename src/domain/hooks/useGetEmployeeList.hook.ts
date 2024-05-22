@@ -7,6 +7,6 @@ export const useGetEmployeeList = () => {
   return useQuery({
     queryKey: ["getEmployeeList"],
     queryFn: () => service.getEmployeeList(),
-    retry: 3,
+    gcTime: 24 * 60 * 60 * 1000,
   });
 };
