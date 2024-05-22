@@ -9,15 +9,14 @@ export default function CreateEmployeePage() {
   const [age, setAge] = useState(0);
   const [salary, setSalary] = useState(0);
   // TODO: redirect to listing
-  const { isError, isPending, isSuccess, error, mutate } = useCreateEmployee(resetForm);
+  const { isError, isPending, isSuccess, error, mutate } =
+    useCreateEmployee(resetForm);
   const canSubmit = name && age && salary;
 
   const handleCreateEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    mutate(
-      Object.fromEntries(formData) as unknown as CreateEmployeeParams,
-    );
+    mutate(Object.fromEntries(formData) as unknown as CreateEmployeeParams);
   };
 
   function resetForm() {

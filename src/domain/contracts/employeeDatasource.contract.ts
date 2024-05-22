@@ -17,10 +17,11 @@ export default abstract class EmployeeDatasourceContract {
   public abstract updateEmployeeById(
     params: UpdateEmployeeParams,
   ): Promise<EmployeeModel | undefined>;
-  public abstract deleteEmployeeById(
-    params: DeleteEmployeeByIdParams,
-  ): Promise<{
-    status: "success" | "error",
-    message: string
-  }  | undefined>;
+  public abstract deleteEmployeeById(params: DeleteEmployeeByIdParams): Promise<
+    | {
+        status: "success" | "error";
+        message: string;
+      }
+    | undefined
+  >;
 }

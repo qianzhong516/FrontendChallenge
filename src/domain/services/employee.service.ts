@@ -39,12 +39,13 @@ export default class EmployeeService {
   ): Promise<EmployeeModel | undefined> {
     return this.datasource.updateEmployeeById(params);
   }
-  public deleteEmployeeById(
-    params: DeleteEmployeeByIdParams,
-  ): Promise<{
-    status: "success" | "error",
-    message: string
-  }  | undefined> {
+  public deleteEmployeeById(params: DeleteEmployeeByIdParams): Promise<
+    | {
+        status: "success" | "error";
+        message: string;
+      }
+    | undefined
+  > {
     return this.datasource.deleteEmployeeById(params);
   }
 }

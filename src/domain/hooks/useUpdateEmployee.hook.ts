@@ -8,6 +8,6 @@ export const useUpdateEmployee = (handleOnSuccess: () => void) => {
   return useMutation({
     mutationFn: (params: UpdateEmployeeParams) =>
       service.updateEmployeeById(params),
-    onSuccess: handleOnSuccess
+    onSuccess: handleOnSuccess,
   });
 };

@@ -11,9 +11,9 @@ export default function Home() {
 
   const handleDeleteEmployee = (id: number) => {
     mutate({
-      id
-    })
-  }
+      id,
+    });
+  };
 
   return (
     <main className="flex h-screen flex-col items-start justify-start p-4 gap-4">
@@ -28,7 +28,9 @@ export default function Home() {
               <Link href={`/employee/${employee.id}`}>
                 <EmployeeCard employee={employee} />
               </Link>
-              <button onClick={() => handleDeleteEmployee(employee.id)}>Delete</button>
+              <button onClick={() => handleDeleteEmployee(employee.id)}>
+                Delete
+              </button>
             </li>
           ))}
         </ol>

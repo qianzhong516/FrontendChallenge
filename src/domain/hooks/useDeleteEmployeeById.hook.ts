@@ -6,6 +6,7 @@ const service = EmployeeService.getInstance();
 
 export const useDeleteEmployeeById = () => {
   return useMutation({
-    mutationFn: (param: DeleteEmployeeByIdParams) => service.deleteEmployeeById(param),
+    mutationFn: (param: DeleteEmployeeByIdParams) =>
+      service.deleteEmployeeById(param),
   });
 };

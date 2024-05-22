@@ -8,10 +8,10 @@ import { useEffect, useState } from "react";
 
 export default function EditEmployeePage() {
   const { employeeId } = useParams();
-  const {
-    data: employee,
-  } = useGetEmployeeById({ id: Number(employeeId) });
-  const { isError, isPending, isSuccess, error, mutate } = useUpdateEmployee(() => redirect('/'));
+  const { data: employee } = useGetEmployeeById({ id: Number(employeeId) });
+  const { isError, isPending, isSuccess, error, mutate } = useUpdateEmployee(
+    () => redirect("/"),
+  );
 
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
@@ -20,21 +20,19 @@ export default function EditEmployeePage() {
 
   useEffect(() => {
     if (employee) {
-      setName(employee.employee_name)
-      setAge(employee.employee_age)
-      setSalary(employee.employee_salary)
+      setName(employee.employee_name);
+      setAge(employee.employee_age);
+      setSalary(employee.employee_salary);
     }
-  }, [employee])
+  }, [employee]);
 
   const handleUpdateEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!employee) return;
     const formData = new FormData(e.target as HTMLFormElement);
-    formData.append('id', '' + employee.id)
-    mutate(
-      Object.fromEntries(formData) as unknown as UpdateEmployeeParams
-    );
-  }
+    formData.append("id", "" + employee.id);
+    mutate(Object.fromEntries(formData) as unknown as UpdateEmployeeParams);
+  };
 
   return (
     <main className="flex h-screen flex-col items-start justify-start p-4">
