@@ -8,6 +8,7 @@ import {
 import {
   CreateEmployeeParams,
   GetEmployeeByIdParams,
+  UpdateEmployeeParams,
 } from "@/domain/params/employee.param";
 
 export default class EmployeeDatasource extends EmployeeDatasourceContract {
@@ -64,7 +65,7 @@ export default class EmployeeDatasource extends EmployeeDatasourceContract {
   ): Promise<EmployeeModel | undefined> {
     try {
       const response = await fetch(
-        `https://dummy.restapiexample.com/api/v1/employee/${params.id}`,
+        `https://dummy.restapiexample.com/api/v1/employee/${params.id}`
       );
       if (response.status !== 200) {
         return undefined;
@@ -78,9 +79,29 @@ export default class EmployeeDatasource extends EmployeeDatasourceContract {
   }
 
   public async updateEmployeeById(
-    params: unknown,
+    params: UpdateEmployeeParams,
   ): Promise<EmployeeModel | undefined> {
-    throw new Error("Method not implemented.");
+    try {
+      const {id, ...employeeDetails} = params;
+      const response = await fetch(
+        `https://dummy.restapiexample.com/api/v1/employee/${id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify(employeeDetails),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      if (response.status !== 200) {
+        return undefined;
+      }
+      const json = await response.json();
+      const data = json["data"];
+      return EmployeeSchema.parse(data);
+    } catch (exception) {
+      return undefined;
+    }
   }
 
   public deleteEmployeeById(

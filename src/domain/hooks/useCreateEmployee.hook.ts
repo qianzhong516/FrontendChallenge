@@ -8,8 +8,6 @@ export const useCreateEmployee = (handleOnSuccess: () => void) => {
   return useMutation({
     mutationFn: (params: CreateEmployeeParams) =>
       service.createEmployee(params),
-    onSuccess() {
-      handleOnSuccess();
-    },
+    onSuccess: handleOnSuccess,
   });
 };

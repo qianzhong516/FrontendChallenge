@@ -8,5 +8,6 @@ export const useGetEmployeeById = (param: GetEmployeeByIdParams) => {
   return useQuery({
     queryKey: ["getEmployeeById"],
     queryFn: () => service.getEmployeeById(param),
+    retry: 3,
   });
 };

@@ -8,13 +8,14 @@ export default function CreateEmployeePage() {
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [salary, setSalary] = useState(0);
-  const mutation = useCreateEmployee(resetForm);
+  // TODO: redirect to listing
+  const { isError, isPending, isSuccess, error, mutate } = useCreateEmployee(resetForm);
   const canSubmit = name && age && salary;
 
   const handleCreateEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    mutation.mutate(
+    mutate(
       Object.fromEntries(formData) as unknown as CreateEmployeeParams,
     );
   };
@@ -28,11 +29,11 @@ export default function CreateEmployeePage() {
   return (
     <main className="flex h-screen flex-col items-start justify-start p-4">
       <h1 className="text-lg my-6">Create Employee</h1>
-      {mutation.isPending ? (
+      {isPending ? (
         <p>Creating employee...</p>
-      ) : mutation.isError ? (
-        <div>Something went wrong: {mutation.error.message}</div>
-      ) : mutation.isSuccess ? (
+      ) : isError ? (
+        <div>Something went wrong: {error.message}</div>
+      ) : isSuccess ? (
         <div>Employee created!</div>
       ) : null}
       <form className="flex flex-col gap-y-3" onSubmit={handleCreateEmployee}>

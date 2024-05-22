@@ -5,7 +5,7 @@ import EmployeeCard from "@/ui/components/EmployeeCard.component";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-export default function EditEmployeePage() {
+export default function EmployeeDetailsPage() {
   const { employeeId } = useParams();
   const {
     data: employee,

@@ -6,10 +6,7 @@ export const GetEmployeeByIdSchema = z.object({
 });
 export type GetEmployeeByIdParams = z.infer<typeof GetEmployeeByIdSchema>;
 
-export const UpdateEmployeeSchema = z.object({
-  name: z.string().min(1),
-});
-export type UpdateEmployeeParams = z.infer<typeof UpdateEmployeeSchema>;
+export type UpdateEmployeeParams = z.infer<typeof EmployeeSchema>;
 
 export const CreateEmployeeSchema = EmployeeSchema.omit({ id: true });
 export type CreateEmployeeParams = z.infer<typeof CreateEmployeeSchema>;

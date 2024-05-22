@@ -4,6 +4,7 @@ import { EmployeeListModel, EmployeeModel } from "../models/employee.model";
 import {
   CreateEmployeeParams,
   GetEmployeeByIdParams,
+  UpdateEmployeeParams,
 } from "../params/employee.param";
 
 export default class EmployeeService {
@@ -33,7 +34,7 @@ export default class EmployeeService {
     return this.datasource.getEmployeeById(params);
   }
   public updateEmployeeById(
-    params: unknown,
+    params: UpdateEmployeeParams,
   ): Promise<EmployeeModel | undefined> {
     return this.datasource.updateEmployeeById(params);
   }
