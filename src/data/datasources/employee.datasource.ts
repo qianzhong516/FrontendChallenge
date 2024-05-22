@@ -7,6 +7,7 @@ import {
 } from "@/domain/models/employee.model";
 import {
   CreateEmployeeParams,
+  DeleteEmployeeByIdParams,
   GetEmployeeByIdParams,
   UpdateEmployeeParams,
 } from "@/domain/params/employee.param";
@@ -104,9 +105,28 @@ export default class EmployeeDatasource extends EmployeeDatasourceContract {
     }
   }
 
-  public deleteEmployeeById(
-    params: unknown,
-  ): Promise<EmployeeModel | undefined> {
-    throw new Error("Method not implemented.");
+  public async deleteEmployeeById(
+    params: DeleteEmployeeByIdParams,
+  ): Promise<{
+    status: "success" | "error",
+    message: string
+  } | undefined> {
+    try {
+      const {id} = params;
+      const response = await fetch(
+        `https://dummy.restapiexample.com/api/v1/delete/${id}`,
+        {
+          method: "DELETE",
+        },
+      );
+      if (response.status !== 200) {
+        return undefined;
+      }
+      const json = await response.json();
+      const data = json["data"];
+      return data;
+    } catch (exception) {
+      return undefined;
+    }
   }
 }

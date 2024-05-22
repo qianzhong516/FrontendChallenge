@@ -1,5 +1,7 @@
 import { EmployeeListModel, EmployeeModel } from "../models/employee.model";
 import {
+  CreateEmployeeParams,
+  DeleteEmployeeByIdParams,
   GetEmployeeByIdParams,
   UpdateEmployeeParams,
 } from "../params/employee.param";
@@ -7,15 +9,18 @@ import {
 export default abstract class EmployeeDatasourceContract {
   public abstract getEmployeeList(): Promise<EmployeeListModel | undefined>;
   public abstract createEmployee(
-    params: unknown,
+    params: CreateEmployeeParams,
   ): Promise<EmployeeModel | undefined>;
   public abstract getEmployeeById(
     params: GetEmployeeByIdParams,
   ): Promise<EmployeeModel | undefined>;
   public abstract updateEmployeeById(
-    params: unknown,
+    params: UpdateEmployeeParams,
   ): Promise<EmployeeModel | undefined>;
   public abstract deleteEmployeeById(
-    params: unknown,
-  ): Promise<EmployeeModel | undefined>;
+    params: DeleteEmployeeByIdParams,
+  ): Promise<{
+    status: "success" | "error",
+    message: string
+  }  | undefined>;
 }

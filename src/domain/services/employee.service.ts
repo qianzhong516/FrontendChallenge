@@ -3,6 +3,7 @@ import EmployeeDatasourceContract from "../contracts/employeeDatasource.contract
 import { EmployeeListModel, EmployeeModel } from "../models/employee.model";
 import {
   CreateEmployeeParams,
+  DeleteEmployeeByIdParams,
   GetEmployeeByIdParams,
   UpdateEmployeeParams,
 } from "../params/employee.param";
@@ -39,8 +40,11 @@ export default class EmployeeService {
     return this.datasource.updateEmployeeById(params);
   }
   public deleteEmployeeById(
-    params: unknown,
-  ): Promise<EmployeeModel | undefined> {
+    params: DeleteEmployeeByIdParams,
+  ): Promise<{
+    status: "success" | "error",
+    message: string
+  }  | undefined> {
     return this.datasource.deleteEmployeeById(params);
   }
 }
